@@ -1,0 +1,406 @@
+@import './lib/fonts/fonts.css';
+
+/* ==========================================================================
+   TCG Beyond — The Graded Slab
+   Catppuccin x4 (AC-UI-06). The counter is the theme; the slab is the object
+   lying on it. Rank colour lives in exactly one place: the grade band.
+   ========================================================================== */
+
+:root {
+	/* Type */
+	--face-label: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+	--face-serial: 'Azeret Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+	/* Type ramp. Seven steps with distinct roles — the build previously used
+	   nine sizes across a 0.56–1.06rem band, which is a continuum, not a scale. */
+	--t-micro: 0.625rem;
+	--t-small: 0.75rem;
+	--t-label: 0.8125rem;
+	--t-base: 0.9375rem;
+	--t-title: 1.0625rem;
+	--t-head: 1.5rem;
+	--t-display: clamp(1.5rem, 1.1rem + 1.6vw, 2.125rem);
+
+	/* Radius scale. Hairline, field, slab, well, and the pill a count badge needs. */
+	--r-hair: 2px;
+	--r-field: 3px;
+	--r-pill: 999px;
+
+	/* Cert-label caps: condensed, tracked, uppercase. */
+	--label-stretch: 78%;
+	--label-track: 0.07em;
+
+	/* Spacing — one rhythm throughout. */
+	--s-1: 0.25rem;
+	--s-2: 0.5rem;
+	--s-3: 0.75rem;
+	--s-4: 1rem;
+	--s-5: 1.5rem;
+	--s-6: 2rem;
+	--s-7: 3rem;
+	--s-8: 4.5rem;
+
+	--slab-radius: 5px;
+	--well-radius: 7px;
+
+	--rail-w: 14.5rem;
+	--rail-w-collapsed: 3.5rem;
+	--bar-h: 3.25rem;
+
+	--ease-print: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Palettes. Each theme sets the Catppuccin ramp, the slab materials derived
+   from it, and the six rank colours (GS-EXP-28) in that theme's tone.
+   -------------------------------------------------------------------------- */
+
+[data-theme='latte'] {
+	--ground: #eff1f5;
+	--inset: #e6e9ef;
+	--well: #e1e4ec;
+	--acrylic: #f7f8fa;
+	--acrylic-edge: #b9bfcd;
+	--acrylic-bevel: #ffffff;
+	/* Cert-label stock: light printed card in every theme, because that is what
+	   a slab label is. Its own ink ramp rides with it. */
+	--plate: #ffffff;
+	--plate-edge: #ccd0da;
+	--plate-ink: #4c4f69;
+	--plate-ink-soft: #5c5f77;
+	--plate-ink-faint: #6c6f85;
+	--ink: #4c4f69;
+	--ink-soft: #5c5f77;
+	--ink-faint: #636579;
+	--line: #ccd0da;
+	--line-soft: #dce0e8;
+	--accent: #1b5cdc;
+	--accent-ink: #ffffff;
+	--positive: #2f741f;
+	--negative: #c90e36;
+	--negative-ink: #ffffff;
+	--warn: #8e5a12;
+	--shadow-slab: 0 1px 2px rgb(76 79 105 / 0.12), 0 4px 12px rgb(76 79 105 / 0.14);
+	--shadow-lift: 0 2px 4px rgb(76 79 105 / 0.14), 0 12px 28px rgb(76 79 105 / 0.2);
+	--well-inner: inset 0 2px 5px rgb(76 79 105 / 0.2);
+	--scrim: rgb(76 79 105 / 0.35);
+	--holo-a: #04a5e5;
+	--holo-b: #ea76cb;
+	--holo-c: #df8e1d;
+	--rank-common: #40a02b;
+	--rank-common-ink: #11111b;
+	--rank-rare: #1e66f5;
+	--rank-rare-ink: #ffffff;
+	--rank-legendary: #df8e1d;
+	--rank-legendary-ink: #11111b;
+	--rank-mythic: #fe640b;
+	--rank-mythic-ink: #11111b;
+	--rank-unique: #d20f39;
+	--rank-unique-ink: #ffffff;
+	--rank-beyond: #8839ef;
+	--rank-beyond-ink: #ffffff;
+	color-scheme: light;
+}
+
+[data-theme='frappe'] {
+	--ground: #303446;
+	--inset: #292c3c;
+	--well: #232634;
+	--acrylic: #414559;
+	--acrylic-edge: #51576d;
+	--acrylic-bevel: #737994;
+	--plate: #e8eaf2;
+	--plate-edge: #b9bed4;
+	--plate-ink: #232634;
+	--plate-ink-soft: #414559;
+	--plate-ink-faint: #51576d;
+	--ink: #c6d0f5;
+	--ink-soft: #c6d0f5;
+	--ink-faint: #b5bfe2;
+	--line: #51576d;
+	--line-soft: #414559;
+	--accent: #99b4f0;
+	--accent-ink: #232634;
+	--positive: #a6d189;
+	--negative: #ed9fa0;
+	--negative-ink: #232634;
+	--warn: #e5c890;
+	--shadow-slab: 0 1px 2px rgb(17 17 27 / 0.45), 0 5px 16px rgb(17 17 27 / 0.5);
+	--shadow-lift: 0 2px 5px rgb(17 17 27 / 0.5), 0 16px 34px rgb(17 17 27 / 0.6);
+	--well-inner: inset 0 2px 6px rgb(17 17 27 / 0.7);
+	--scrim: rgb(17 17 27 / 0.55);
+	--holo-a: #85c1dc;
+	--holo-b: #f4b8e4;
+	--holo-c: #e5c890;
+	--rank-common: #a6d189;
+	--rank-common-ink: #232634;
+	--rank-rare: #8caaee;
+	--rank-rare-ink: #232634;
+	--rank-legendary: #e5c890;
+	--rank-legendary-ink: #232634;
+	--rank-mythic: #ef9f76;
+	--rank-mythic-ink: #232634;
+	--rank-unique: #e78284;
+	--rank-unique-ink: #232634;
+	--rank-beyond: #ca9ee6;
+	--rank-beyond-ink: #232634;
+	color-scheme: dark;
+}
+
+[data-theme='macchiato'] {
+	--ground: #24273a;
+	--inset: #1e2030;
+	--well: #181926;
+	--acrylic: #363a4f;
+	--acrylic-edge: #494d64;
+	--acrylic-bevel: #6e738d;
+	--plate: #e6e8f2;
+	--plate-edge: #b5bad0;
+	--plate-ink: #181926;
+	--plate-ink-soft: #363a4f;
+	--plate-ink-faint: #494d64;
+	--ink: #cad3f5;
+	--ink-soft: #cad3f5;
+	--ink-faint: #a5adcb;
+	--line: #494d64;
+	--line-soft: #363a4f;
+	--accent: #8aadf4;
+	--accent-ink: #181926;
+	--positive: #a6da95;
+	--negative: #ed8796;
+	--negative-ink: #181926;
+	--warn: #eed49f;
+	--shadow-slab: 0 1px 2px rgb(9 10 16 / 0.5), 0 5px 16px rgb(9 10 16 / 0.55);
+	--shadow-lift: 0 2px 5px rgb(9 10 16 / 0.55), 0 16px 34px rgb(9 10 16 / 0.65);
+	--well-inner: inset 0 2px 6px rgb(9 10 16 / 0.75);
+	--scrim: rgb(9 10 16 / 0.6);
+	--holo-a: #7dc4e4;
+	--holo-b: #f5bde6;
+	--holo-c: #eed49f;
+	--rank-common: #a6da95;
+	--rank-common-ink: #181926;
+	--rank-rare: #8aadf4;
+	--rank-rare-ink: #181926;
+	--rank-legendary: #eed49f;
+	--rank-legendary-ink: #181926;
+	--rank-mythic: #f5a97f;
+	--rank-mythic-ink: #181926;
+	--rank-unique: #ed8796;
+	--rank-unique-ink: #181926;
+	--rank-beyond: #c6a0f6;
+	--rank-beyond-ink: #181926;
+	color-scheme: dark;
+}
+
+[data-theme='mocha'] {
+	--ground: #1e1e2e;
+	--inset: #181825;
+	--well: #11111b;
+	--acrylic: #313244;
+	--acrylic-edge: #45475a;
+	--acrylic-bevel: #6c7086;
+	--plate: #e4e6f2;
+	--plate-edge: #b3b7cc;
+	--plate-ink: #11111b;
+	--plate-ink-soft: #313244;
+	--plate-ink-faint: #45475a;
+	--ink: #cdd6f4;
+	--ink-soft: #cdd6f4;
+	--ink-faint: #a6adc8;
+	--line: #45475a;
+	--line-soft: #313244;
+	--accent: #89b4fa;
+	--accent-ink: #11111b;
+	--positive: #a6e3a1;
+	--negative: #f38ba8;
+	--negative-ink: #11111b;
+	--warn: #f9e2af;
+	--shadow-slab: 0 1px 2px rgb(0 0 0 / 0.55), 0 5px 16px rgb(0 0 0 / 0.55);
+	--shadow-lift: 0 2px 5px rgb(0 0 0 / 0.6), 0 16px 34px rgb(0 0 0 / 0.7);
+	--well-inner: inset 0 2px 6px rgb(0 0 0 / 0.8);
+	--scrim: rgb(0 0 0 / 0.62);
+	--holo-a: #74c7ec;
+	--holo-b: #f5c2e7;
+	--holo-c: #f9e2af;
+	--rank-common: #a6e3a1;
+	--rank-common-ink: #11111b;
+	--rank-rare: #89b4fa;
+	--rank-rare-ink: #11111b;
+	--rank-legendary: #f9e2af;
+	--rank-legendary-ink: #11111b;
+	--rank-mythic: #fab387;
+	--rank-mythic-ink: #11111b;
+	--rank-unique: #f38ba8;
+	--rank-unique-ink: #11111b;
+	--rank-beyond: #cba6f7;
+	--rank-beyond-ink: #11111b;
+	color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--ground);
+	color: var(--ink);
+	font-family: var(--face-label);
+	font-size: var(--t-base);
+	line-height: 1.55;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: 700;
+	font-stretch: 80%;
+	letter-spacing: -0.015em;
+	line-height: 1.15;
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+/* Reading measure, applied where there is actually prose to read. */
+.prose {
+	max-width: 68ch;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+a {
+	color: inherit;
+	text-decoration-color: color-mix(in oklab, currentColor 45%, transparent);
+	text-underline-offset: 0.18em;
+	text-decoration-thickness: 1px;
+}
+
+/* Browser surfaces the design still owns. */
+::selection {
+	background: color-mix(in oklab, var(--accent) 32%, transparent);
+	color: var(--ink);
+}
+
+:where(input, textarea) {
+	caret-color: var(--accent);
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+	border-radius: var(--r-hair);
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--acrylic-edge) transparent;
+}
+
+*::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: var(--acrylic-edge);
+	border: 3px solid var(--ground);
+	border-radius: var(--r-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background: var(--ink-faint);
+}
+
+/* --------------------------------------------------------------------------
+   Shared cert-label idioms
+   -------------------------------------------------------------------------- */
+
+/* The label plate is light stock in all four themes, so everything printed on
+   it switches to the plate's own ink ramp. */
+.on-plate {
+	background: var(--plate);
+	color: var(--plate-ink);
+	--ink: var(--plate-ink);
+	--ink-soft: var(--plate-ink-soft);
+	--ink-faint: var(--plate-ink-faint);
+	--line: var(--plate-edge);
+	--line-soft: var(--plate-edge);
+}
+
+.cert-caps {
+	font-stretch: var(--label-stretch);
+	font-weight: 700;
+	letter-spacing: var(--label-track);
+	text-transform: uppercase;
+	font-size: var(--t-micro);
+	line-height: 1.3;
+	color: var(--ink-faint);
+}
+
+.serial {
+	font-family: var(--face-serial);
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: 'ss01';
+	letter-spacing: -0.02em;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+.skip-link {
+	position: absolute;
+	top: var(--s-2);
+	left: var(--s-2);
+	z-index: 100;
+	padding: var(--s-2) var(--s-4);
+	background: var(--accent);
+	color: var(--accent-ink);
+	border-radius: var(--slab-radius);
+	transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

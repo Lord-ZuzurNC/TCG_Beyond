@@ -1,6 +1,8 @@
 > TCG Beyond — Game System Specification
 > Prefix: `GS-*`
-> Version: v0.14 — 2026-09-04
+> Version: v0.15 — 2026-09-20
+> v0.15: GS-EXP-22 and AC-UI-10 permit the 10-slot booster stack to wrap into
+> two rows of five. Order is unchanged.
 > Companion documents: [game-rules.md](game-rules.md) (GR-*) · [architecture.md](architecture.md) (AC-*)
 
 ## Contents
@@ -289,7 +291,7 @@ NOTE:
 
 ### 4.8 Booster Stack UI
 
-- GS-EXP-22: The booster stack is displayed as a **row of 10 logo-style slot icons**, ordered left (slot 1) → right (slot 10).
+- GS-EXP-22: The booster stack is displayed as **10 logo-style slot icons** in reading order, slot 1 first. They may occupy one row of ten or **two rows of five**, whichever renders the slots at object scale for the viewport; order is always left-to-right, top-to-bottom.
 - GS-EXP-23: Each slot icon has two states: **outlined/empty** (no booster) and **filled/plain** (booster ready).
 - GS-EXP-24: Slot 10 displays a **shiny** visual when it holds an Overflow-Booster.
 - GS-EXP-25: Slot 1 displays a **shiny** visual for Challengers when the independent 6-hour Overflow timer has fired and is waiting for the player to open slot 1 (see GS-EXP-09). The shiny persists whether slot 1 is empty or filled. The 11th timer only affects slot 10 and is independent of slot 1.

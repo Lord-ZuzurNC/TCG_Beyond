@@ -1,6 +1,8 @@
 > TCG Beyond — Architecture
 > Prefix: `AC-*`
-> Version: v0.14 — 2026-09-04
+> Version: v0.15 — 2026-09-20
+> v0.15: AC-UI-10 and GS-EXP-22 permit the 10-slot booster stack to wrap into
+> two rows of five, so each slot can render at object scale. Order is unchanged.
 > Companion documents: [game-system.md](game-system.md) (GS-*) · [game-rules.md](game-rules.md) (GR-*)
 
 ## Contents
@@ -238,7 +240,7 @@
 
 ### 5.2 Explore (/explore)
 
-- AC-UI-10: The top area shows the 10 booster slot icons in a left-to-right row. A booster slot is clickable only when it is the leftmost filled slot. Slot states: empty (outlined), filled (solid), Overflow (shiny). Below the row: the 15-minute Cross-Booster timer. Below that, in secondary colour, the Challenger 6-hour Overflow timer (Challenger accounts only). To the right of the booster row, the Rank-Booster and TCG-Booster dedicated slots are stacked vertically.
+- AC-UI-10: The top area shows the 10 booster slot icons in reading order, slot 1 first. The row **may wrap into two rows of five** so each slot renders at object scale; order is preserved left-to-right, top-to-bottom, and is never re-sorted. A booster slot is clickable only when it is the leftmost filled slot. Slot states: empty (outlined), filled (solid), Overflow (shiny). Below the row: the 15-minute Cross-Booster timer. Below that, in secondary colour, the Challenger 6-hour Overflow timer (Challenger accounts only). To the right of the booster row, the Rank-Booster and TCG-Booster dedicated slots are stacked vertically.
 - AC-UI-11: A subscription banner is displayed at the bottom of the Explore page for non-Challenger players; it is hidden for Challengers.
 
 ### 5.3 Museum (/museum)
